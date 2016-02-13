@@ -42,7 +42,7 @@ public class CardListingFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 							 Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.activity_card_listing, container, false);
+		View view = inflater.inflate(R.layout.content_card_listing, container, false);
 		name = (EditText) view.findViewById(R.id.text_name);
 		phone = (EditText) view.findViewById(R.id.text_phone);
 		email = (EditText) view.findViewById(R.id.text_email);
@@ -51,7 +51,7 @@ public class CardListingFragment extends Fragment {
 		company = (EditText) view.findViewById(R.id.text_company);
 		text_long = (EditText) view.findViewById(R.id.text_long);
 		card_image = (ImageView) view.findViewById(R.id.image_card);
-		progress = (ProgressBar) view.findViewById(R.id.card_loading);
+//		progress = (ProgressBar) view.findViewById(R.id.card_loading);
 		((FloatingActionButton)view.findViewById(R.id.fab)).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -105,7 +105,7 @@ public class CardListingFragment extends Fragment {
 		// handle type of layout over here. Or VIEW_HIDE them in the onCreate method
 
 		Log.d("RenderCalled", "Sending request to server");
-		progress.setVisibility(View.VISIBLE);
+//		progress.setVisibility(View.VISIBLE);
 		card_image.setAlpha(0.3f);
 		SendDataTask sendDataTask = new SendDataTask(){
 			@Override
@@ -121,18 +121,19 @@ public class CardListingFragment extends Fragment {
 								@Override
 								public void onSuccess() {
 									card_image.setAlpha(1.0f);
-									progress.setVisibility(View.GONE);
+//									progress.setVisibility(View.GONE);
 								}
 
 								@Override
 								public void onError() {
 									card_image.setAlpha(1.0f);
-									progress.setVisibility(View.GONE);
+//									progress.setVisibility(View.GONE);
 									Toast.makeText(getActivity(), "Unable to render card.", Toast.LENGTH_SHORT).show();
 								}
 							});
 				} catch (JSONException e) {
 					e.printStackTrace();
+				} catch (NullPointerException ignored){
 				}
 			}
 		}.setContext(getActivity()).setBitmap(logo);
