@@ -7,7 +7,7 @@
 	tools:showIn="@layout/activity_card_listing"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".CardListing">
+	tools:context="com.bylders.cardholder.CardListingFragment">
 
 	<RelativeLayout
 		android:layout_width="match_parent"
