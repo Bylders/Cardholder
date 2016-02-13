@@ -2,20 +2,39 @@ package com.bylders.cardholder;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.android.internal.http.multipart.FilePart;
+import com.android.internal.http.multipart.MultipartEntity;
+import com.android.internal.http.multipart.Part;
+
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by darkryder on 13/2/16.
@@ -151,12 +170,66 @@ class FetchUserTask extends AsyncTask<String, Void, Contact>
             String email = jsonObject.getString("display_email");
             String website = jsonObject.getString("website");
 
-            Contact which = new Contact(name, pk, image_url, mobile, email, website);
-
-            return which;
+            return new Contact(name, pk, image_url, mobile, email, website);
         } catch (JSONException e) {
             Log.d("FetchUserTask", "JSON EXCEPTION" + e.toString());
             return null;
         }
     }
+}
+
+class SendDataTask extends AsyncTask<String, Void, String>
+{
+	private Context context;
+	private Bitmap bitmap;
+	private SendDataTask setContext(Context context){this.context = context; return this;}
+	private SendDataTask setBitmap(Bitmap bitmap){this.bitmap= bitmap; return this;}
+	private final String TAG = "SendDataTask";
+
+	@Override
+	protected String doInBackground(String... params) {
+		if(context == null){
+			Log.d(TAG, "context not set");
+			return null;
+		}
+		String api_token = PreferenceManager.getDefaultSharedPreferences(context).getString("api_key", null);
+		if (api_token == null){
+			Log.d(TAG, "Api key not found");
+			return null;
+		}
+
+		OkHttpClient client = new OkHttpClient();
+		String url = ApiFetcher.API_URL + "render?api_key=" + api_token;
+		MultipartBody.Builder builder = new MultipartBody.Builder()
+				.setType(MultipartBody.FORM);
+
+		if(bitmap == null){
+			Log.d(TAG, "logo bitmap isn't set");
+		} else {
+			ByteArrayOutputStream bao = new ByteArrayOutputStream();
+			bitmap.compress(Bitmap.CompressFormat.PNG, 90, bao);
+			byte[] data = bao.toByteArray();
+			builder.addFormDataPart("image", "logo.png", RequestBody.create(MediaType.parse("image/png"), data));
+		}
+
+		// assume if layout doesn't need a field, it'll send null for it. And "" for empty string.
+		String[] FIELD_NAMES = {"name", "mobile", "email", "website", "title", "company", "address"};
+		for(int i = 0; i < FIELD_NAMES.length; i++)
+		{
+			if (params[i] != null){
+				builder.addFormDataPart(FIELD_NAMES[i], params[i]);
+			}
+		}
+
+		Request request = new Request.Builder().url(url).post(builder.build()).build();
+
+		try {
+			Response response = client.newCall(request).execute();
+			if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
+			return  response.body().string();
+		} catch (IOException e) {
+			Log.e(TAG, e.toString());
+			return null;
+		}
+	}
 }

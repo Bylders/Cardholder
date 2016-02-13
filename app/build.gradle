@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
+    useLibrary 'org.apache.http.legacy'
     defaultConfig {
         applicationId "com.bylders.cardholder"
         minSdkVersion 15
@@ -27,6 +27,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-identity:8.3.0'
     compile 'com.google.android.gms:play-services-plus:8.3.0'
     compile 'com.google.android.gms:play-services:8.3.0'
+    compile 'com.squareup.okhttp3:okhttp:3.1.2'
+    compile "org.apache.httpcomponents:httpmime:4.2.3"
     compile 'com.android.support:design:23.1.1'
 }
 apply plugin: 'com.google.gms.google-services'

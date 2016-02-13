@@ -9,10 +9,77 @@
 	android:layout_height="match_parent"
 	tools:context=".CardListing">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="@dimen/text_margin"
-		android:text="@string/large_text"/>
+	<RelativeLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<EditText
+			android:layout_alignParentTop="true"
+			android:layout_margin="10dp"
+			android:inputType="textPersonName"
+			android:hint="Name"
+			android:id="@+id/text_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_name"
+			android:layout_margin="10dp"
+			android:inputType="phone"
+			android:hint="Phone"
+			android:id="@+id/text_phone"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_phone"
+			android:layout_margin="10dp"
+			android:inputType="textEmailAddress"
+			android:hint="Email"
+			android:id="@+id/text_email"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_email"
+			android:layout_margin="10dp"
+			android:inputType="textUri"
+			android:hint="Website"
+			android:id="@+id/text_website"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_website"
+			android:layout_margin="10dp"
+			android:inputType="text"
+			android:hint="Title"
+			android:id="@+id/text_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_title"
+			android:layout_margin="10dp"
+			android:inputType="text"
+			android:hint="Company"
+			android:id="@+id/text_company"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<EditText
+			android:layout_below="@id/text_company"
+			android:layout_margin="10dp"
+			android:inputType="textMultiLine"
+			android:hint="Long Text(Like address, bio)"
+			android:id="@+id/text_long"
+			android:lines="3"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+		<Button
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Upload logo"
+			android:onClick="uploadLogoOnClick"
+			android:id="@+id/button_logo"
+			android:layout_below="@id/text_long"
+			android:layout_margin="10dp"
+			/>
+
+
+	</RelativeLayout>
 
 </android.support.v4.widget.NestedScrollView>
