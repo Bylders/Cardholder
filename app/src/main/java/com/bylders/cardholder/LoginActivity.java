@@ -57,6 +57,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         SignInButton btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
 
+        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("loggedin", false))
+        {
+            startActivity(new Intent(this, CardListing.class));
+            finish();
+        }
+
         btnSignIn.setOnClickListener(this);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -88,12 +94,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onConnected(Bundle bundle) {
         String email = Plus.AccountApi.getAccountName(mGoogleApiClient);
         Toast.makeText(this, "Connected", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(LoginActivity.this, CardListing.class);
+//        Intent intent = new Intent(LoginActivity.this, CardListing.class);
 
         // Get user's information
         getProfileInformation();
-        intent.putExtras(b);
-        startActivity(intent);
+//        intent.putExtras(b);
+//        startActivity(intent);
         mSignInClicked = false;
     }
 
@@ -223,7 +229,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String resp = null;
             try {
                 Log.i("Extra", "Start trying to communicate with the server" + strings.toString());
-//            Log.v("PingTest", "starting");
                 String API_URL = "http://steady-dagger-158651.nitrousapp.com:3000/api/v1/";
                 URL url = new URL(API_URL + "emaillogin?email=" + strings[0] + "&name=" + strings[1].split(" ")[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();

@@ -1,10 +1,13 @@
 package com.bylders.cardholder;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +29,7 @@ public class CardListing extends AppCompatActivity {
 						.setAction("Action", null).show();
 			}
 		});
+		test();
 	}
 
 	@Override
@@ -47,5 +51,37 @@ public class CardListing extends AppCompatActivity {
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private void test()
+	{
+		FetchSelfTask fetchSelfTask = new FetchSelfTask(){
+			@Override
+			protected void onPostExecute(Contact contact) {
+				super.onPostExecute(contact);
+				if (contact == null)
+				{
+					Log.v("TEST", "Fetched NULL self");
+					return;
+				}
+				Log.v("TEST", "Fetched self" + contact.toString());
+			}
+		}.setContext(this);
+		fetchSelfTask.execute();
+
+
+		FetchUserTask fetchUserTask = new FetchUserTask(){
+			@Override
+			protected void onPostExecute(Contact contact) {
+				super.onPostExecute(contact);
+				if(contact == null)
+				{
+					Log.v("TEST", "Fetched NULL user");
+					return;
+				}
+				Log.v("TEST", "Fetched user" + contact.toString());
+			}
+		}.setContext(this);
+		fetchUserTask.execute(PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null));
 	}
 }
