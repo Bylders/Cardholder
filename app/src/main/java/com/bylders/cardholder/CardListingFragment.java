@@ -58,6 +58,12 @@ public class CardListingFragment extends Fragment {
 				renderButtonClicked(v);
 			}
 		});
+		((Button) view.findViewById(R.id.button_logo)).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				uploadLogoOnClick(v);
+			}
+		});
 
 		return view;
 	}

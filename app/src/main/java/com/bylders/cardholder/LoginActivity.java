@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("loggedin", false))
         {
-            startActivity(new Intent(this, CardListing.class));
+            startActivity(new Intent(this, MainActivity.class));
             finish();
         }
 
@@ -263,7 +263,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         .putBoolean("logged_in", true)
                         .commit();
                 Log.d(TAG, "apikey" + token + " pk:" + pk);
-                Intent mainActivity = new Intent(context,CardListing.class);
+                Intent mainActivity = new Intent(context,MainActivity.class);
                 mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainActivity);
                 return true;

@@ -73,7 +73,6 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Upload logo"
-			android:onClick="uploadLogoOnClick"
 			android:id="@+id/button_logo"
 			android:layout_below="@id/text_long"
 			android:layout_margin="10dp"
