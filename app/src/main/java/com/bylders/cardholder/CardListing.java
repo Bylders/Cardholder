@@ -17,13 +17,25 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CardListing extends AppCompatActivity {
 
 	private Bitmap logo;
 	private EditText name, phone, email, website, title,
 						company, text_long;
+	private ImageView card_image;
+	private ProgressBar progress;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +53,8 @@ public class CardListing extends AppCompatActivity {
 		title = (EditText) findViewById(R.id.text_title);
 		company = (EditText) findViewById(R.id.text_company);
 		text_long = (EditText) findViewById(R.id.text_long);
+		card_image = (ImageView) findViewById(R.id.image_card);
+		progress = (ProgressBar) findViewById(R.id.card_loading);
 	}
 
 	@Override
@@ -125,6 +139,9 @@ public class CardListing extends AppCompatActivity {
 				String filePath = cursor.getString(columnIndex);
 				cursor.close();
 				logo = BitmapFactory.decodeFile(filePath);
+				if(logo!=null){
+					((Button) findViewById(R.id.button_logo)).setText(filePath);
+				}
 			}
 		}
 	}
@@ -133,14 +150,40 @@ public class CardListing extends AppCompatActivity {
 		// handle type of layout over here. Or VIEW_HIDE them in the onCreate method
 
 		Log.d("RenderCalled", "Sending request to server");
+		progress.setVisibility(View.VISIBLE);
+		card_image.setAlpha(0.3f);
 		SendDataTask sendDataTask = new SendDataTask(){
 			@Override
 			protected void onPostExecute(String s) {
 				Log.d("RenderFinished", "Received" + s);
-			}
-		};
-		sendDataTask.execute(name.toString(), phone.toString(), email.toString(), website.toString(),
-				title.toString(), company.toString(), text_long.toString());
 
+				try {
+					JSONObject json = new JSONObject(s);
+					String image_url = json.getString("image_url");
+					Picasso.with(getApplicationContext())
+							.load(image_url)
+							.into(card_image, new Callback() {
+								@Override
+								public void onSuccess() {
+									card_image.setAlpha(1.0f);
+									progress.setVisibility(View.GONE);
+								}
+
+								@Override
+								public void onError() {
+									card_image.setAlpha(1.0f);
+									progress.setVisibility(View.GONE);
+									Toast.makeText(CardListing.this, "Unable to render card.", Toast.LENGTH_SHORT).show();
+								}
+							});
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			}
+		}.setContext(this).setBitmap(logo);
+		sendDataTask.execute(name.getText().toString(), phone.getText().toString(),
+				email.getText().toString(), website.getText().toString(),
+				title.getText().toString(), company.getText().toString(),
+				text_long.getText().toString());
 	}
 }

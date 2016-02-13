@@ -21,8 +21,27 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			app:layout_scrollFlags="scroll|exitUntilCollapsed"
+			app:expandedTitleTextAppearance="@style/TransparentText"
 			app:contentScrim="?attr/colorPrimary">
 
+			<ProgressBar
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:indeterminate="true"
+				android:id="@+id/card_loading"
+				android:layout_gravity="center"
+				android:visibility="gone"
+				/>
+
+			<ImageView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:contentDescription="Card image"
+				android:scaleType="fitXY"
+				android:fitsSystemWindows="true"
+				app:layout_collapseMode="parallax"
+				android:id="@+id/image_card"
+				/>
 			<android.support.v7.widget.Toolbar
 				android:id="@+id/toolbar"
 				android:layout_height="?attr/actionBarSize"
@@ -43,6 +62,6 @@
 		android:onClick="renderButtonClicked"
 		app:layout_anchor="@id/app_bar"
 		app:layout_anchorGravity="bottom|end"
-		android:src="@android:drawable/ic_dialog_email"/>
+		android:src="@drawable/ic_refresh_white_48dp"/>
 
 </android.support.design.widget.CoordinatorLayout>

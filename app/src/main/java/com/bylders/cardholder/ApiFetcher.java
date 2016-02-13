@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
+import android.util.Base64;
 import android.util.Log;
 
 import com.android.internal.http.multipart.FilePart;
@@ -28,6 +29,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -182,8 +184,8 @@ class SendDataTask extends AsyncTask<String, Void, String>
 {
 	private Context context;
 	private Bitmap bitmap;
-	private SendDataTask setContext(Context context){this.context = context; return this;}
-	private SendDataTask setBitmap(Bitmap bitmap){this.bitmap= bitmap; return this;}
+	public SendDataTask setContext(Context context){this.context = context; return this;}
+	public SendDataTask setBitmap(Bitmap bitmap){this.bitmap= bitmap; return this;}
 	private final String TAG = "SendDataTask";
 
 	@Override
@@ -207,9 +209,9 @@ class SendDataTask extends AsyncTask<String, Void, String>
 			Log.d(TAG, "logo bitmap isn't set");
 		} else {
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.PNG, 90, bao);
-			byte[] data = bao.toByteArray();
-			builder.addFormDataPart("image", "logo.png", RequestBody.create(MediaType.parse("image/png"), data));
+			bitmap.compress(Bitmap.CompressFormat.PNG, 50, bao);
+			String encodedImage = Base64.encodeToString(bao.toByteArray(), Base64.DEFAULT);
+			builder.addFormDataPart("image", encodedImage);//"logo.png", RequestBody.create(MediaType.parse("image/png"), data));
 		}
 
 		// assume if layout doesn't need a field, it'll send null for it. And "" for empty string.
