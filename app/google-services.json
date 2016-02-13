@@ -14,7 +14,28 @@
           "package_name": "com.bylders.cardholder"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "726614236926-lhbbfa9rerh1lf0e8iri5clvuavrul1l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bylders.cardholder",
+            "certificate_hash": "23102EBE35C36951FFBD532C7A37A883D518A683"
+          }
+        },
+        {
+          "client_id": "726614236926-ui3fu49s3q5phl6efv83gjqgbicqermi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bylders.cardholder",
+            "certificate_hash": "161BB70C7398770D3703DF58CED7B4DC399D1924"
+          }
+        },
+        {
+          "client_id": "726614236926-b11j5fph976m0gpfiodgu7u732q4r1l5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [],
       "services": {
         "analytics_service": {
@@ -29,7 +50,7 @@
           "other_platform_oauth_client": []
         },
         "google_signin_service": {
-          "status": 1
+          "status": 2
         },
         "ads_service": {
           "status": 1
