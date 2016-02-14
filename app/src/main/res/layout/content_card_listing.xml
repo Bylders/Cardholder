@@ -14,12 +14,19 @@
 		android:layout_height="match_parent">
 
 
+		<Spinner
+			android:paddingTop="32dp"
+			android:layout_alignParentTop="true"
+			android:layout_margin="10dp"
+			android:id="@+id/spinner"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
 
 		<EditText
-			android:layout_alignParentTop="true"
 			android:layout_margin="10dp"
 			android:inputType="textPersonName"
 			android:hint="Name"
+			android:layout_below="@id/spinner"
 			android:id="@+id/text_name"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"/>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="layouts_array">
+		<item>Style 1</item>
+		<item>Style 2</item>
+		<item>Style 3</item>
+	</string-array>
+</resources>

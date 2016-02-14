@@ -43,8 +43,8 @@ import okhttp3.Response;
  * Created by darkryder on 13/2/16.
  */
 public class ApiFetcher {
-	public static final String BASE_URL = "http://steady-dagger-158651.nitrousapp.com:3000";
-    public static final String API_URL = "http://steady-dagger-158651.nitrousapp.com:3000/api/v1/";
+	public static final String BASE_URL = "http://cupholder.ankursingh.me";
+    public static final String API_URL = "http://cupholder.ankursingh.me/api/v1/";
 
     public static String getSignedResponse(String url_, String api, boolean POST, HashMap<String, String> params) throws IOException
     {
@@ -341,7 +341,7 @@ class SendDataTask extends AsyncTask<String, Void, String>
 		}
 
 		// assume if layout doesn't need a field, it'll send null for it. And "" for empty string.
-		String[] FIELD_NAMES = {"name", "mobile", "email", "website", "title", "company", "address"};
+		String[] FIELD_NAMES = {"name", "mobile", "email", "website", "title", "company", "address", "template_id"};
 		for(int i = 0; i < FIELD_NAMES.length; i++)
 		{
 			if (params[i] != null){

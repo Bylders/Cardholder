@@ -31,10 +31,11 @@ public class ShareCard extends AppCompatActivity {
 	public void shareButtonClicked(View view) {
 
 		String name = PreferenceManager.getDefaultSharedPreferences(this).getString("name", null);
+		String pk = PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null);
 
 		Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 		sharingIntent.setType("text/plain");
-		String shareBody = "Hello, find my contact at " + "http://www.google.com";
+		String shareBody = "Hello, find my contact at " + "cardholder://qr/" + pk;
 		sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, name);
 		sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 		startActivity(Intent.createChooser(sharingIntent, "Share via"));

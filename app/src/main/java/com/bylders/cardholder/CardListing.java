@@ -17,10 +17,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.squareup.picasso.Callback;
@@ -29,14 +32,16 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CardListing extends AppCompatActivity {
+public class CardListing extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
 	private Bitmap logo;
 	private EditText name, phone, email, website, title,
 						company, text_long;
 	private ImageView card_image;
 	private ProgressBar progress;
+	private Spinner spinner;
 	Contact me;
+	private int template_id = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +61,23 @@ public class CardListing extends AppCompatActivity {
 		text_long = (EditText) findViewById(R.id.text_long);
 		card_image = (ImageView) findViewById(R.id.image_card);
 		progress = (ProgressBar) findViewById(R.id.card_loading);
+		spinner = (Spinner) findViewById(R.id.spinner);
+
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+				R.array.layouts_array, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(this);
 
 		me = Contact.getContactFromDb(PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null), this);
 
 		if(me != null){
 			Picasso.with(this).load(ApiFetcher.BASE_URL + me.contact_image_url).into(card_image);
+			name.setText(me.name);
+			phone.setText(me.mobile);
+			email.setText(me.email);
+			website.setText(me.website);
+			text_long.setText(me.address);
 		}
 
 		setTitle();
@@ -208,6 +225,14 @@ public class CardListing extends AppCompatActivity {
 		sendDataTask.execute(name.getText().toString(), phone.getText().toString(),
 				email.getText().toString(), website.getText().toString(),
 				title.getText().toString(), company.getText().toString(),
-				text_long.getText().toString());
+				text_long.getText().toString(), Integer.toString(template_id));
 	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+		template_id = position + 1;
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> parent) {}
 }
