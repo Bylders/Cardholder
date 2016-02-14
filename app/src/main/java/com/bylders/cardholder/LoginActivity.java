@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.Api;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.plus.Plus;
 import com.google.android.gms.plus.model.people.Person;
@@ -223,8 +224,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             String resp = null;
             try {
                 Log.i("Extra", "Start trying to communicate with the server" + strings.toString());
-                String API_URL = "http://steady-dagger-158651.nitrousapp.com:3000/api/v1/";
-                URL url = new URL(API_URL + "emaillogin?email=" + strings[0] + "&name=" + strings[1].split(" ")[0]);
+                URL url = new URL(ApiFetcher.API_URL + "emaillogin?email=" + strings[0] + "&name=" + strings[1].split(" ")[0]);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();

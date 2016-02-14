@@ -5,12 +5,12 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:fitsSystemWindows="false"
+	android:fitsSystemWindows="true"
 	tools:context=".ContactDetails">
 
 	<android.support.design.widget.AppBarLayout
 		android:id="@+id/app_bar"
-		android:fitsSystemWindows="false"
+		android:fitsSystemWindows="true"
 		android:layout_height="@dimen/app_bar_height"
 		android:layout_width="match_parent"
 		android:theme="@style/AppTheme.AppBarOverlay">
@@ -38,7 +38,7 @@
 				android:layout_height="match_parent"
 				android:contentDescription="Card image"
 				android:scaleType="fitXY"
-				android:fitsSystemWindows="false"
+				android:fitsSystemWindows="true"
 				app:layout_collapseMode="parallax"
 				android:id="@+id/image_card"
 				android:layout_margin="8dp"

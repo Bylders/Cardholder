@@ -43,8 +43,8 @@ import okhttp3.Response;
  * Created by darkryder on 13/2/16.
  */
 public class ApiFetcher {
-	public static final String BASE_URL = "http://cupholder.ankursingh.me";
-    public static final String API_URL = "http://cupholder.ankursingh.me/api/v1/";
+	public static final String BASE_URL = "http://cardholder.ankursingh.me";
+    public static final String API_URL = "http://cardholder.ankursingh.me/api/v1/";
 
     public static String getSignedResponse(String url_, String api, boolean POST, HashMap<String, String> params) throws IOException
     {
