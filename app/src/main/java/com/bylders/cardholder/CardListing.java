@@ -58,6 +58,18 @@ public class CardListing extends AppCompatActivity {
 		progress = (ProgressBar) findViewById(R.id.card_loading);
 
 		me = Contact.getContactFromDb(PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null), this);
+
+		if(me != null){
+			Picasso.with(this).load(ApiFetcher.BASE_URL + me.contact_image_url).into(card_image);
+		}
+
+		setTitle();
+	}
+
+	private void setTitle()
+	{
+		String name = PreferenceManager.getDefaultSharedPreferences(this).getString("name", null);
+		if (name != null) setTitle(name);
 	}
 
 	@Override
@@ -163,15 +175,17 @@ public class CardListing extends AppCompatActivity {
 
 				try {
 					JSONObject json = new JSONObject(s);
-					String image_url = json.getString("card_image");
+					String image_url = json.getJSONObject("card_image").getString("url");
+
 
 					if(me!=null && image_url != null){
 						me.contact_image_url = image_url;
+//						me.contact_image_url = ApiFetcher.API_URL.substring(0, ApiFetcher.API_URL.length() -7) + image_url;
 						me.save(getApplicationContext());
 					}
 
 					Picasso.with(getApplicationContext())
-							.load(image_url)
+							.load(ApiFetcher.BASE_URL + me.contact_image_url)
 							.into(card_image, new Callback() {
 								@Override
 								public void onSuccess() {

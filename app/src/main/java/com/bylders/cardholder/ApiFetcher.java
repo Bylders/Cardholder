@@ -18,6 +18,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,6 +43,7 @@ import okhttp3.Response;
  * Created by darkryder on 13/2/16.
  */
 public class ApiFetcher {
+	public static final String BASE_URL = "http://steady-dagger-158651.nitrousapp.com:3000";
     public static final String API_URL = "http://steady-dagger-158651.nitrousapp.com:3000/api/v1/";
 
     public static String getSignedResponse(String url_, String api, boolean POST, HashMap<String, String> params) throws IOException
@@ -116,25 +118,90 @@ class FetchSelfTask extends AsyncTask<String, Void, Contact>
             jsonObject = new JSONObject(response);
             String name = jsonObject.getString("name");
             String pk = jsonObject.getString("pkey");
-            String image_url = jsonObject.getString("card_image");
-            String mobile = jsonObject.getString("mobile");
+			String image_url = jsonObject.getJSONObject("card_image").getString("url");
+			String qr_code = jsonObject.getJSONObject("qr_code").getString("url");
+			String mobile = jsonObject.getString("mobile");
             String email = jsonObject.getString("display_email");
             String website = jsonObject.getString("website");
 			String address = jsonObject.getString("address");
 
-            Contact me = new Contact(name, pk, image_url, mobile, email, website, address, response);
+            Contact me = new Contact(name, pk, image_url, mobile, email, website, address,qr_code, response);
 
             sharedPreferences.edit().putString("name", name).
                     putString("pk", pk).putString("image_url", image_url).
                     putString("mobile", mobile).putString("email", email).
                     putString("website", website).commit();
-
+			me.save(context);
             return me;
         } catch (JSONException e) {
             Log.d("FetchSelfTask", "JSON EXCEPTION" + e.toString());
             return null;
         }
     }
+}
+
+
+class ResyncTask extends AsyncTask<Void, Void, Void>
+{
+	Context context;
+	public ResyncTask setContext(Context context){this.context = context; return this;}
+
+	@Override
+	protected void onPreExecute() {
+		super.onPreExecute();
+		FetchSelfTask fetchSelfTask = new FetchSelfTask().setContext(context);
+		fetchSelfTask.executeOnExecutor(THREAD_POOL_EXECUTOR);
+	}
+
+	@Override
+	protected Void doInBackground(Void... voids) {
+		if (context == null) {
+			Log.d("FetchSelfTask", "Context not given");
+			return null;
+		}
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		String api_token = sharedPreferences.getString("api_key", null);
+		if (api_token == null) {
+			Log.d("FetchSelfTask", "Api key not given");
+			return null;
+		}
+
+		String response;
+		try {
+			response = ApiFetcher.getSignedResponse(ApiFetcher.API_URL + "contacts", api_token,false, null);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		JSONArray jsonObject_ = null;
+		try {
+			jsonObject_ = new JSONArray(response);
+
+			for(int i = 0; i < jsonObject_.length(); i++)
+			{
+				JSONObject jsonObject = jsonObject_.getJSONObject(i);
+				String name = jsonObject.getString("name");
+				String pk = jsonObject.getString("pkey");
+				String qr_code = jsonObject.getJSONObject("qr_code").getString("url");
+				String image_url = jsonObject.getJSONObject("card_image").getString("url");
+				String mobile = jsonObject.getString("mobile");
+				String email = jsonObject.getString("display_email");
+				String website = jsonObject.getString("website");
+				String address = jsonObject.getString("address");
+
+				Contact which = new Contact(name, pk, image_url, mobile, email, website, address, qr_code, jsonObject.toString());
+				Log.e("CHECKING", jsonObject.toString());
+				which.save(context);
+				Contact.hashSet.add(pk);
+			}
+			Contact.commitHashSet(context);
+		} catch (JSONException e) {
+			Log.d("FetchSelfTask", "JSON EXCEPTION" + e.toString());
+			return null;
+		}
+		return null;
+	}
 }
 
 
@@ -168,20 +235,75 @@ class FetchUserTask extends AsyncTask<String, Void, Contact>
             jsonObject = new JSONObject(response);
             String name = jsonObject.getString("name");
             String pk = jsonObject.getString("pkey");
-            String image_url = jsonObject.getString("card_image");
+			String qr_code = jsonObject.getJSONObject("qr_code").getString("url");
+			String image_url = jsonObject.getJSONObject("card_image").getString("url");
             String mobile = jsonObject.getString("mobile");
             String email = jsonObject.getString("display_email");
             String website = jsonObject.getString("website");
 			String address = jsonObject.getString("address");
 
-			Contact which = new Contact(name, pk, image_url, mobile, email, website, address, response);
+			Contact which = new Contact(name, pk, image_url, mobile, email, website, address, qr_code, response);
 			which.save(context);
+			Contact.hashSet.add(pk);
+			Contact.commitHashSet(context);
 			return  which;
         } catch (JSONException e) {
             Log.d("FetchUserTask", "JSON EXCEPTION" + e.toString());
             return null;
         }
     }
+}
+
+class ConnectTask extends AsyncTask<String, Void, Contact>
+{
+	Context context;
+	public ConnectTask setContext(Context context){this.context = context; return this;}
+	@Override
+	protected Contact doInBackground(String... strings) {
+		if (context == null) {
+			Log.d("ConnectTask", "Context not given");
+			return null;
+		}
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		String api_token = sharedPreferences.getString("api_key", null);
+		if (api_token == null) {
+			Log.d("ConnectTask", "Api key not given");
+			return null;
+		}
+		String response;
+		try {
+			String which = strings[0];
+			HashMap<String, String> data = new HashMap<>();
+			data.put("pk", strings[0]);
+			response = ApiFetcher.getSignedResponse(ApiFetcher.API_URL + "connect/", api_token,false, data);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+
+		Log.v("ConnectTask", response == null ? "NULL RESPONSE" : response.toString());
+		JSONObject jsonObject = null;
+		try {
+			jsonObject = new JSONObject(response);
+			String name = jsonObject.getString("name");
+			String pk = jsonObject.getString("pkey");
+			String image_url = jsonObject.getJSONObject("card_image").getString("url");
+			String mobile = jsonObject.getString("mobile");
+			String email = jsonObject.getString("display_email");
+			String website = jsonObject.getString("website");
+			String address = jsonObject.getString("address");
+			String qr_code = jsonObject.getJSONObject("qr_code").getString("url");
+
+			Contact which = new Contact(name, pk, image_url, mobile, email, website, address,qr_code, response);
+			which.save(context);
+			Contact.hashSet.add(pk);
+			Contact.commitHashSet(context);
+			return  which;
+		} catch (JSONException e) {
+			Log.d("FetchUserTask", "JSON EXCEPTION" + e.toString());
+			return null;
+		}
+	}
 }
 
 class SendDataTask extends AsyncTask<String, Void, String>
@@ -213,9 +335,9 @@ class SendDataTask extends AsyncTask<String, Void, String>
 			Log.d(TAG, "logo bitmap isn't set");
 		} else {
 			ByteArrayOutputStream bao = new ByteArrayOutputStream();
-			bitmap.compress(Bitmap.CompressFormat.PNG, 50, bao);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 70, bao);
 			String encodedImage = Base64.encodeToString(bao.toByteArray(), Base64.DEFAULT);
-			builder.addFormDataPart("image", encodedImage);//"logo.png", RequestBody.create(MediaType.parse("image/png"), data));
+			builder.addFormDataPart("logo", "data:image/jpg;base64," + encodedImage);//"logo.png", RequestBody.create(MediaType.parse("image/png"), data));
 		}
 
 		// assume if layout doesn't need a field, it'll send null for it. And "" for empty string.

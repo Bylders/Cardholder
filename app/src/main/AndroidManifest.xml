@@ -29,10 +29,37 @@
 
 				<category android:name="android.intent.category.LAUNCHER"/>
 			</intent-filter>
+			<intent-filter>
+				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:scheme="cardholder"
+					  android:host="bylders" />
+			</intent-filter>
+			<intent-filter android:label="Cardholder">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<!-- Accepts URIs that begin with "example://gizmos” -->
+				<data android:scheme="cardholder"
+					  android:host="qr" />
+			</intent-filter>
+			<intent-filter android:label="Cardholder">
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<!-- Accepts URIs that begin with "example://gizmos” -->
+				<data android:scheme="http"
+					  android:host="bylders.com" />
+			</intent-filter>
 		</activity>
 		<activity
 			android:name=".ContactDetails"
 			android:label="@string/title_activity_contact_details"
+			android:theme="@style/AppTheme.NoActionBar">
+		</activity>
+		<activity
+			android:name=".ShareCard"
+			android:label="@string/title_activity_share_card"
 			android:theme="@style/AppTheme.NoActionBar">
 		</activity>
 	</application>

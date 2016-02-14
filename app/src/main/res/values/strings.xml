@@ -94,4 +94,5 @@
 	<string name="hello_world">Hello world!</string>
 	<string name="title_activity_main">MainActivity</string>
 	<string name="title_activity_contact_details">ContactDetails</string>
+	<string name="title_activity_share_card">ShareCard</string>
 </resources>

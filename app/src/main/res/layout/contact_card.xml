@@ -10,7 +10,7 @@
 		android:id="@+id/card_view"
 		android:layout_gravity="center"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
+		android:layout_height="200dp"
 		android:minHeight="100dp"
 		card_view:elevation="4dp"
 		card_view:cardCornerRadius="4dp">

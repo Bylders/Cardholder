@@ -17,6 +17,8 @@
 	<ListView
 		android:id="@+id/list_view"
 		android:scrollbars="vertical"
+		android:dividerHeight="8dp"
+		android:divider="@android:color/transparent"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"/>
 
@@ -38,6 +40,15 @@
 		fab:menu_colorNormal="#FFB805"
 		fab:menu_colorPressed="#F2AB00"
 		fab:menu_colorRipple="#D99200">
+
+		<com.github.clans.fab.FloatingActionButton
+			android:id="@+id/refresh_fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/ic_refresh_white_24dp"
+			fab:fab_label="Refresh list"
+			style="@style/MenuButtonsStyle"
+			/>
 
 		<com.github.clans.fab.FloatingActionButton
 			android:id="@+id/edit_fab"

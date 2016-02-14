@@ -57,12 +57,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         SignInButton btnSignIn = (SignInButton) findViewById(R.id.btn_sign_in);
 
-        if (PreferenceManager.getDefaultSharedPreferences(this).getBoolean("loggedin", false))
-        {
-            startActivity(new Intent(this, CardListing.class));
-            finish();
-        }
-
         btnSignIn.setOnClickListener(this);
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -260,12 +254,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 PreferenceManager.getDefaultSharedPreferences(context).edit()
                         .putString("api_key", token)
                         .putString("pk", pk)
-                        .putBoolean("logged_in", true)
+                        .putBoolean("loggedin", true)
                         .commit();
                 Log.d(TAG, "apikey" + token + " pk:" + pk);
-                Intent mainActivity = new Intent(context,CardListing.class);
+                Intent mainActivity = new Intent(context,MainActivity.class);
                 mainActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mainActivity);
+                finish();
                 return true;
             } catch (IOException e)
             {

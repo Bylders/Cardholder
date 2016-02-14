@@ -12,6 +12,9 @@
 	<RelativeLayout
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
+
+
+
 		<EditText
 			android:layout_alignParentTop="true"
 			android:layout_margin="10dp"
@@ -78,6 +81,8 @@
 			android:layout_below="@id/text_long"
 			android:layout_margin="10dp"
 			/>
+
+
 
 
 	</RelativeLayout>
