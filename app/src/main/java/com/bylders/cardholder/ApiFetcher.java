@@ -120,8 +120,9 @@ class FetchSelfTask extends AsyncTask<String, Void, Contact>
             String mobile = jsonObject.getString("mobile");
             String email = jsonObject.getString("display_email");
             String website = jsonObject.getString("website");
+			String address = jsonObject.getString("address");
 
-            Contact me = new Contact(name, pk, image_url, mobile, email, website);
+            Contact me = new Contact(name, pk, image_url, mobile, email, website, address, response);
 
             sharedPreferences.edit().putString("name", name).
                     putString("pk", pk).putString("image_url", image_url).
@@ -171,8 +172,11 @@ class FetchUserTask extends AsyncTask<String, Void, Contact>
             String mobile = jsonObject.getString("mobile");
             String email = jsonObject.getString("display_email");
             String website = jsonObject.getString("website");
+			String address = jsonObject.getString("address");
 
-            return new Contact(name, pk, image_url, mobile, email, website);
+			Contact which = new Contact(name, pk, image_url, mobile, email, website, address, response);
+			which.save(context);
+			return  which;
         } catch (JSONException e) {
             Log.d("FetchUserTask", "JSON EXCEPTION" + e.toString());
             return null;
@@ -201,7 +205,7 @@ class SendDataTask extends AsyncTask<String, Void, String>
 		}
 
 		OkHttpClient client = new OkHttpClient();
-		String url = ApiFetcher.API_URL + "render?api_key=" + api_token;
+		String url = ApiFetcher.API_URL + "set?api_key=" + api_token;
 		MultipartBody.Builder builder = new MultipartBody.Builder()
 				.setType(MultipartBody.FORM);
 

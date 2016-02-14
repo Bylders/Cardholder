@@ -1,0 +1,630 @@
+commit eadbccd50d8539da9da6208a1a2413a92e753c18
+Author: Palash Bansal <PalashBansal96@gmail.com>
+Date:   Sun Feb 14 02:28:41 2016 +0530
+
+    checkpoint before adding nabdrawer
+
+diff --git a/app/app.iml b/app/app.iml
+index b1604a8..fe1944f 100644
+--- a/app/app.iml
++++ b/app/app.iml
+@@ -70,35 +70,36 @@
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/classes" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/dependency-cache" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.1/jars" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.2.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.3.0/jars" />
+-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services/8.3.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.4.0/jars" />
++      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/exploded-aar/com.google.android.gms/play-services/8.4.0/jars" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/incremental" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-support" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
+@@ -114,42 +115,43 @@
+     </content>
+     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+-    <orderEntry type="library" exported="" name="mediarouter-v7-22.2.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-location-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-plus-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-appindexing-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-location-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="okio-1.6.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-appindexing-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-auth-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-plus-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="picasso-2.5.2" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-wearable-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-base-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-identity-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-measurement-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-vision-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-wallet-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-auth-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-wearable-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-base-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-identity-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-measurement-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-maps-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-cast-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-vision-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="recyclerview-v7-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="play-services-wallet-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-analytics-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-drive-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-analytics-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-drive-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="support-annotations-23.1.1" level="project" />
+     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-cast-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-ads-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-appinvite-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-ads-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-appinvite-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="httpmime-4.2.3" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-appstate-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-safetynet-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-appstate-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="httpcore-4.2.2" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-games-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-gcm-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-safetynet-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="cardview-v7-23.1.1" level="project" />
++    <orderEntry type="library" exported="" name="play-services-games-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-gcm-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="design-23.1.1" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-basement-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-maps-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-nearby-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="mediarouter-v7-23.0.0" level="project" />
+     <orderEntry type="library" exported="" name="okhttp-3.1.2" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-fitness-8.3.0" level="project" />
+-    <orderEntry type="library" exported="" name="play-services-panorama-8.3.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-nearby-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-basement-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-fitness-8.4.0" level="project" />
++    <orderEntry type="library" exported="" name="play-services-panorama-8.4.0" level="project" />
+     <orderEntry type="library" exported="" name="org.apache.http.legacy-android-23" level="project" />
+   </component>
+ </module>
+\ No newline at end of file
+diff --git a/app/build.gradle b/app/build.gradle
+index e488fa6..48ea5e5 100644
+--- a/app/build.gradle
++++ b/app/build.gradle
+@@ -20,16 +20,19 @@ android {
+ }
+ 
+ dependencies {
+-    compile fileTree(dir: 'libs', include: ['*.jar'])
++    compile fileTree(include: ['*.jar'], dir: 'libs')
+     testCompile 'junit:junit:4.12'
+     compile 'com.android.support:appcompat-v7:23.1.1'
+     compile 'com.google.android.gms:play-services-auth:8.3.0'
+     compile 'com.google.android.gms:play-services-identity:8.3.0'
+     compile 'com.google.android.gms:play-services-plus:8.3.0'
+-    compile 'com.google.android.gms:play-services:8.3.0'
++    compile 'com.google.android.gms:play-services:8.4.0'
+     compile 'com.squareup.okhttp3:okhttp:3.1.2'
+     compile 'com.squareup.picasso:picasso:2.5.2'
+-    compile "org.apache.httpcomponents:httpmime:4.2.3"
++    compile 'org.apache.httpcomponents:httpmime:4.2.3'
+     compile 'com.android.support:design:23.1.1'
++    compile 'com.android.support:cardview-v7:23.1.1'
++    compile 'com.android.support:recyclerview-v7:23.1.1'
++    compile 'com.android.support:support-v4:23.1.1'
+ }
+ apply plugin: 'com.google.gms.google-services'
+diff --git a/app/src/main/AndroidManifest.xml b/app/src/main/AndroidManifest.xml
+index 288feed..29b9f61 100644
+--- a/app/src/main/AndroidManifest.xml
++++ b/app/src/main/AndroidManifest.xml
+@@ -2,6 +2,7 @@
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+     package="com.bylders.cardholder" >
+ 
++    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+     <uses-permission android:name="android.permission.INTERNET" />
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+ 
+@@ -12,11 +13,6 @@
+         android:supportsRtl="true"
+         android:theme="@style/AppTheme" >
+         <activity
+-            android:name=".CardListing"
+-            android:label="@string/app_name"
+-            android:theme="@style/AppTheme.NoActionBar" >
+-        </activity>
+-        <activity
+             android:name=".LoginActivity"
+             android:label="@string/title_activity_login">
+             <intent-filter>
+diff --git a/app/src/main/java/com/bylders/cardholder/CardListing.java b/app/src/main/java/com/bylders/cardholder/CardListing.java
+deleted file mode 100644
+index 362b466..0000000
+--- a/app/src/main/java/com/bylders/cardholder/CardListing.java
++++ /dev/null
+@@ -1,189 +0,0 @@
+-package com.bylders.cardholder;
+-
+-import android.content.Intent;
+-import android.content.SharedPreferences;
+-import android.database.Cursor;
+-import android.graphics.Bitmap;
+-import android.graphics.BitmapFactory;
+-import android.net.Uri;
+-import android.os.Bundle;
+-import android.preference.PreferenceManager;
+-import android.provider.MediaStore;
+-import android.support.design.widget.FloatingActionButton;
+-import android.support.design.widget.Snackbar;
+-import android.support.v7.app.AppCompatActivity;
+-import android.support.v7.widget.Toolbar;
+-import android.util.Log;
+-import android.view.View;
+-import android.view.Menu;
+-import android.view.MenuItem;
+-import android.widget.Button;
+-import android.widget.EditText;
+-import android.widget.ImageView;
+-import android.widget.ProgressBar;
+-import android.widget.Toast;
+-
+-import com.squareup.picasso.Callback;
+-import com.squareup.picasso.Picasso;
+-
+-import org.json.JSONException;
+-import org.json.JSONObject;
+-
+-public class CardListing extends AppCompatActivity {
+-
+-	private Bitmap logo;
+-	private EditText name, phone, email, website, title,
+-						company, text_long;
+-	private ImageView card_image;
+-	private ProgressBar progress;
+-
+-	@Override
+-	protected void onCreate(Bundle savedInstanceState) {
+-		super.onCreate(savedInstanceState);
+-		setContentView(R.layout.activity_card_listing);
+-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+-		setSupportActionBar(toolbar);
+-
+-		test();
+-
+-		name = (EditText) findViewById(R.id.text_name);
+-		phone = (EditText) findViewById(R.id.text_phone);
+-		email = (EditText) findViewById(R.id.text_email);
+-		website = (EditText) findViewById(R.id.text_website);
+-		title = (EditText) findViewById(R.id.text_title);
+-		company = (EditText) findViewById(R.id.text_company);
+-		text_long = (EditText) findViewById(R.id.text_long);
+-		card_image = (ImageView) findViewById(R.id.image_card);
+-		progress = (ProgressBar) findViewById(R.id.card_loading);
+-	}
+-
+-	@Override
+-	public boolean onCreateOptionsMenu(Menu menu) {
+-		// Inflate the menu; this adds items to the action bar if it is present.
+-		getMenuInflater().inflate(R.menu.menu_card_listing, menu);
+-		return true;
+-	}
+-
+-	@Override
+-	public boolean onOptionsItemSelected(MenuItem item) {
+-		// Handle action bar item clicks here. The action bar will
+-		// automatically handle clicks on the Home/Up button, so long
+-		// as you specify a parent activity in AndroidManifest.xml.
+-		int id = item.getItemId();
+-
+-		//noinspection SimplifiableIfStatement
+-		if (id == R.id.action_settings) {
+-			return true;
+-		}
+-		return super.onOptionsItemSelected(item);
+-	}
+-
+-	private void test()
+-	{
+-		FetchSelfTask fetchSelfTask = new FetchSelfTask(){
+-			@Override
+-			protected void onPostExecute(Contact contact) {
+-				super.onPostExecute(contact);
+-				if (contact == null)
+-				{
+-					Log.v("TEST", "Fetched NULL self");
+-					return;
+-				}
+-				Log.v("TEST", "Fetched self" + contact.toString());
+-			}
+-		}.setContext(this);
+-		fetchSelfTask.execute();
+-
+-
+-		FetchUserTask fetchUserTask = new FetchUserTask(){
+-			@Override
+-			protected void onPostExecute(Contact contact) {
+-				super.onPostExecute(contact);
+-				if(contact == null)
+-				{
+-					Log.v("TEST", "Fetched NULL user");
+-					return;
+-				}
+-				Log.v("TEST", "Fetched user" + contact.toString());
+-			}
+-		}.setContext(this);
+-		fetchUserTask.execute(PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null));
+-	}
+-
+-	private static final int PICK_IMAGE = 157;
+-	public void uploadLogoOnClick(View view) {
+-		Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+-		getIntent.setType("image/*");
+-
+-		Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+-		pickIntent.setType("image/*");
+-
+-		Intent chooserIntent = Intent.createChooser(getIntent, "Select Image for logo");
+-		chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+-
+-		startActivityForResult(chooserIntent, PICK_IMAGE);
+-	}
+-
+-	@Override
+-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+-		super.onActivityResult(requestCode, resultCode, data);
+-		if(requestCode == PICK_IMAGE && resultCode == RESULT_OK){
+-			Uri selectedImage = data.getData();
+-			String[] filePathColumn = {MediaStore.Images.Media.DATA};
+-
+-			Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+-
+-			if (cursor != null) {
+-				cursor.moveToFirst();
+-				int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+-				String filePath = cursor.getString(columnIndex);
+-				cursor.close();
+-				logo = BitmapFactory.decodeFile(filePath);
+-				if(logo!=null){
+-					((Button) findViewById(R.id.button_logo)).setText(filePath);
+-				}
+-			}
+-		}
+-	}
+-
+-	public void renderButtonClicked(View view) {
+-		// handle type of layout over here. Or VIEW_HIDE them in the onCreate method
+-
+-		Log.d("RenderCalled", "Sending request to server");
+-		progress.setVisibility(View.VISIBLE);
+-		card_image.setAlpha(0.3f);
+-		SendDataTask sendDataTask = new SendDataTask(){
+-			@Override
+-			protected void onPostExecute(String s) {
+-				Log.d("RenderFinished", "Received" + s);
+-
+-				try {
+-					JSONObject json = new JSONObject(s);
+-					String image_url = json.getString("image_url");
+-					Picasso.with(getApplicationContext())
+-							.load(image_url)
+-							.into(card_image, new Callback() {
+-								@Override
+-								public void onSuccess() {
+-									card_image.setAlpha(1.0f);
+-									progress.setVisibility(View.GONE);
+-								}
+-
+-								@Override
+-								public void onError() {
+-									card_image.setAlpha(1.0f);
+-									progress.setVisibility(View.GONE);
+-									Toast.makeText(CardListing.this, "Unable to render card.", Toast.LENGTH_SHORT).show();
+-								}
+-							});
+-				} catch (JSONException e) {
+-					e.printStackTrace();
+-				}
+-			}
+-		}.setContext(this).setBitmap(logo);
+-		sendDataTask.execute(name.getText().toString(), phone.getText().toString(),
+-				email.getText().toString(), website.getText().toString(),
+-				title.getText().toString(), company.getText().toString(),
+-				text_long.getText().toString());
+-	}
+-}
+diff --git a/app/src/main/java/com/bylders/cardholder/CardListingFragment.java b/app/src/main/java/com/bylders/cardholder/CardListingFragment.java
+new file mode 100644
+index 0000000..764b7d4
+--- /dev/null
++++ b/app/src/main/java/com/bylders/cardholder/CardListingFragment.java
+@@ -0,0 +1,139 @@
++package com.bylders.cardholder;
++
++import android.content.Intent;
++import android.database.Cursor;
++import android.graphics.Bitmap;
++import android.graphics.BitmapFactory;
++import android.net.Uri;
++import android.provider.MediaStore;
++import android.support.design.widget.FloatingActionButton;
++import android.support.v4.app.Fragment;
++import android.os.Bundle;
++import android.util.Log;
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.Button;
++import android.widget.EditText;
++import android.widget.ImageView;
++import android.widget.ProgressBar;
++import android.widget.Toast;
++
++import com.squareup.picasso.Callback;
++import com.squareup.picasso.Picasso;
++
++import org.json.JSONException;
++import org.json.JSONObject;
++
++/**
++ * A placeholder fragment containing a simple view.
++ */
++public class CardListingFragment extends Fragment {
++
++	private Bitmap logo;
++	private EditText name, phone, email, website, title,
++			company, text_long;
++	private ImageView card_image;
++	private ProgressBar progress;
++
++	public CardListingFragment() {
++	}
++
++	@Override
++	public View onCreateView(LayoutInflater inflater, ViewGroup container,
++							 Bundle savedInstanceState) {
++		View view = inflater.inflate(R.layout.activity_card_listing, container, false);
++		name = (EditText) view.findViewById(R.id.text_name);
++		phone = (EditText) view.findViewById(R.id.text_phone);
++		email = (EditText) view.findViewById(R.id.text_email);
++		website = (EditText) view.findViewById(R.id.text_website);
++		title = (EditText) view.findViewById(R.id.text_title);
++		company = (EditText) view.findViewById(R.id.text_company);
++		text_long = (EditText) view.findViewById(R.id.text_long);
++		card_image = (ImageView) view.findViewById(R.id.image_card);
++		progress = (ProgressBar) view.findViewById(R.id.card_loading);
++		((FloatingActionButton)view.findViewById(R.id.fab)).setOnClickListener(new View.OnClickListener() {
++			@Override
++			public void onClick(View v) {
++				renderButtonClicked(v);
++			}
++		});
++
++		return view;
++	}
++
++	private static final int PICK_IMAGE = 157;
++	public void uploadLogoOnClick(View view) {
++		Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
++		getIntent.setType("image/*");
++
++		Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
++		pickIntent.setType("image/*");
++
++		Intent chooserIntent = Intent.createChooser(getIntent, "Select Image for logo");
++		chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
++
++		startActivityForResult(chooserIntent, PICK_IMAGE);
++	}
++
++	@Override
++	public void onActivityResult(int requestCode, int resultCode, Intent data) {
++		super.onActivityResult(requestCode, resultCode, data);
++		if(requestCode == PICK_IMAGE && resultCode == getActivity().RESULT_OK){
++			Uri selectedImage = data.getData();
++			String[] filePathColumn = {MediaStore.Images.Media.DATA};
++
++			Cursor cursor = getActivity().getContentResolver().query(selectedImage, filePathColumn, null, null, null);
++
++			if (cursor != null) {
++				cursor.moveToFirst();
++				int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
++				String filePath = cursor.getString(columnIndex);
++				cursor.close();
++				logo = BitmapFactory.decodeFile(filePath);
++			}
++		}
++	}
++
++	public void renderButtonClicked(View view) {
++		// handle type of layout over here. Or VIEW_HIDE them in the onCreate method
++
++		Log.d("RenderCalled", "Sending request to server");
++		progress.setVisibility(View.VISIBLE);
++		card_image.setAlpha(0.3f);
++		SendDataTask sendDataTask = new SendDataTask(){
++			@Override
++			protected void onPostExecute(String s) {
++				Log.d("RenderFinished", "Received" + s);
++
++				try {
++					JSONObject json = new JSONObject(s);
++					String image_url = json.getString("image_url");
++					Picasso.with(getActivity())
++							.load(image_url)
++							.into(card_image, new Callback() {
++								@Override
++								public void onSuccess() {
++									card_image.setAlpha(1.0f);
++									progress.setVisibility(View.GONE);
++								}
++
++								@Override
++								public void onError() {
++									card_image.setAlpha(1.0f);
++									progress.setVisibility(View.GONE);
++									Toast.makeText(getActivity(), "Unable to render card.", Toast.LENGTH_SHORT).show();
++								}
++							});
++				} catch (JSONException e) {
++					e.printStackTrace();
++				}
++			}
++		}.setContext(getActivity()).setBitmap(logo);
++		sendDataTask.execute(name.getText().toString(), phone.getText().toString(),
++				email.getText().toString(), website.getText().toString(),
++				title.getText().toString(), company.getText().toString(),
++				text_long.getText().toString());
++	}
++
++}
+diff --git a/app/src/main/res/layout/activity_card_listing.xml b/app/src/main/res/layout/activity_card_listing.xml
+index 37035c3..c175e75 100644
+--- a/app/src/main/res/layout/activity_card_listing.xml
++++ b/app/src/main/res/layout/activity_card_listing.xml
+@@ -6,7 +6,7 @@
+ 	android:layout_width="match_parent"
+ 	android:layout_height="match_parent"
+ 	android:fitsSystemWindows="true"
+-	tools:context=".CardListing">
++	tools:context="com.bylders.cardholder.CardListingFragment">
+ 
+ 	<android.support.design.widget.AppBarLayout
+ 		android:id="@+id/app_bar"
+@@ -59,7 +59,6 @@
+ 		android:layout_width="wrap_content"
+ 		android:layout_height="wrap_content"
+ 		android:layout_margin="@dimen/fab_margin"
+-		android:onClick="renderButtonClicked"
+ 		app:layout_anchor="@id/app_bar"
+ 		app:layout_anchorGravity="bottom|end"
+ 		android:src="@drawable/ic_refresh_white_48dp"/>
+diff --git a/app/src/main/res/layout/contact_card.xml b/app/src/main/res/layout/contact_card.xml
+new file mode 100644
+index 0000000..8cc4d72
+--- /dev/null
++++ b/app/src/main/res/layout/contact_card.xml
+@@ -0,0 +1,23 @@
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++			  xmlns:tools="http://schemas.android.com/tools"
++			  xmlns:card_view="http://schemas.android.com/apk/res-auto"
++			  android:layout_height="wrap_content"
++			  android:layout_width="match_parent"
++			  android:orientation="vertical">
++	<android.support.v7.widget.CardView
++		xmlns:card_view="http://schemas.android.com/apk/res-auto"
++		android:id="@+id/card_view"
++		android:layout_gravity="center"
++		android:layout_width="match_parent"
++		android:layout_height="wrap_content"
++		card_view:elevation="4dp"
++		card_view:cardCornerRadius="4dp">
++
++		<ImageView
++			android:layout_width="match_parent"
++			android:layout_height="wrap_content"
++			android:id="@+id/image_card"
++			android:scaleType="fitXY"/>
++
++	</android.support.v7.widget.CardView>
++</LinearLayout>
+\ No newline at end of file
+diff --git a/app/src/main/res/layout/content_card_listing.xml b/app/src/main/res/layout/content_card_listing.xml
+index fa357a8..93fed36 100644
+--- a/app/src/main/res/layout/content_card_listing.xml
++++ b/app/src/main/res/layout/content_card_listing.xml
+@@ -7,7 +7,7 @@
+ 	tools:showIn="@layout/activity_card_listing"
+ 	android:layout_width="match_parent"
+ 	android:layout_height="match_parent"
+-	tools:context=".CardListing">
++	tools:context="com.bylders.cardholder.CardListingFragment">
+ 
+ 	<RelativeLayout
+ 		android:layout_width="match_parent"
+diff --git a/app/src/main/res/menu/menu_card_listing.xml b/app/src/main/res/menu/menu_card_listing.xml
+deleted file mode 100644
+index 6b5465b..0000000
+--- a/app/src/main/res/menu/menu_card_listing.xml
++++ /dev/null
+@@ -1,9 +0,0 @@
+-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+-	  xmlns:app="http://schemas.android.com/apk/res-auto"
+-	  xmlns:tools="http://schemas.android.com/tools"
+-	  tools:context=".CardListing">
+-	<item android:id="@+id/action_settings"
+-		  android:title="@string/action_settings"
+-		  android:orderInCategory="100"
+-		  app:showAsAction="never"/>
+-</menu>
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+index 7faa5ef..0a50635 100644
+--- a/app/src/main/res/values/strings.xml
++++ b/app/src/main/res/values/strings.xml
+@@ -90,6 +90,9 @@
+ 		"when a user tries to pick up one of cards.\n\n"
+ 	</string>
+ 	<string name="action_settings">Settings</string>
+-    <string name="title_activity_login">LoginActivity</string>
+-    <string name="hello_world">Hello world!</string>
++	<string name="title_activity_login">LoginActivity</string>
++	<string name="hello_world">Hello world!</string>
++
++	<!-- TODO: Remove or change this placeholder text -->
++	<string name="hello_blank_fragment">Hello blank fragment</string>
+ </resources>

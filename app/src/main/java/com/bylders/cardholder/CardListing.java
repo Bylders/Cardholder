@@ -36,6 +36,7 @@ public class CardListing extends AppCompatActivity {
 						company, text_long;
 	private ImageView card_image;
 	private ProgressBar progress;
+	Contact me;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class CardListing extends AppCompatActivity {
 		text_long = (EditText) findViewById(R.id.text_long);
 		card_image = (ImageView) findViewById(R.id.image_card);
 		progress = (ProgressBar) findViewById(R.id.card_loading);
+
+		me = Contact.getContactFromDb(PreferenceManager.getDefaultSharedPreferences(this).getString("pk", null), this);
 	}
 
 	@Override
@@ -90,6 +93,7 @@ public class CardListing extends AppCompatActivity {
 					return;
 				}
 				Log.v("TEST", "Fetched self" + contact.toString());
+				contact.save(context);
 			}
 		}.setContext(this);
 		fetchSelfTask.execute();
@@ -159,7 +163,13 @@ public class CardListing extends AppCompatActivity {
 
 				try {
 					JSONObject json = new JSONObject(s);
-					String image_url = json.getString("image_url");
+					String image_url = json.getString("card_image");
+
+					if(me!=null && image_url != null){
+						me.contact_image_url = image_url;
+						me.save(getApplicationContext());
+					}
+
 					Picasso.with(getApplicationContext())
 							.load(image_url)
 							.into(card_image, new Callback() {

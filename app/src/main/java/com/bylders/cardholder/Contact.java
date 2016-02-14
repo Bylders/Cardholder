@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.preference.PreferenceManager;
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 import java.io.Serializable;
 
@@ -17,13 +22,45 @@ public class Contact implements Serializable {
     public String mobile;
     public String email;
     public String website;
+    public String address;
+    public String json_string;
 
-    public Contact(String name, String pk, String contact_image_url, String mobile, String email, String website) {
+    public Contact(String name, String pk, String contact_image_url, String mobile, String email, String website, String address, String json_string) {
         this.name = name;
         this.pk = pk;
         this.contact_image_url = contact_image_url;
         this.mobile = mobile;
         this.email = email;
         this.website = website;
+        this.json_string = json_string;
+        this.address = address;
+    }
+
+    public void save(Context context)
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putString(this.pk, this.json_string).commit();
+    }
+
+    public static Contact getContactFromDb(String pk, Context context)
+    {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String json = sharedPreferences.getString(pk, null);
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = new JSONObject(json);
+            String name = jsonObject.getString("name");
+            String pk_ = jsonObject.getString("pkey");
+            String image_url = jsonObject.getString("card_image");
+            String mobile = jsonObject.getString("mobile");
+            String email = jsonObject.getString("display_email");
+            String website = jsonObject.getString("website");
+            String address = jsonObject.getString("address");
+
+            return new Contact(name, pk_, image_url, mobile, email, website, address, json);
+        } catch (JSONException e) {
+            Log.d("SerialiseTask", "JSON EXCEPTION" + e.toString());
+            return null;
+        }
     }
 }
